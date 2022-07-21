@@ -264,4 +264,4 @@ Please use `az ml online-endpoint delete` to delete the test online endpoints an
 
 ## Contact us
 
-For any questions, bugs and requests of new features, please contact us at [mprof@microsoft.com](mailto:miroptprof@microsoft.com)
+For any questions, bugs and requests of new features, please contact us at [miroptprof@microsoft.com](mailto:miroptprof@microsoft.com)
