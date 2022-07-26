@@ -64,23 +64,3 @@ Now you can start modifying the code in the <a href="/code">`code` folder</a>, s
 ### 6. Kickoff auto profile with multiple SKUs
 
 Run the `deploy` GitHub action. It will kick off the model deployment. After it's completed, `profile` action will automatically started.
-
-# Documentation
-
-## Code structure
-
-| File/folder                   | Description                                |
-| ----------------------------- | ------------------------------------------ |
-| `code`                        | Sample data science source code that will be submitted to Azure Machine Learning to deploy and profile machine learning models. |
-| `code/online-endpoint/model-1` | Sample model, including model files, environment definition and scoring script. |
-| `code/online-endpoint/model-2` | Sample model, including model files, environment definition and scoring script. |
-| `code/online-endpoint/blue-deployment.yml` | Online deployment YML file to deploy the model. |
-| `code/online-endpoint/endpoint.yml` | Online endpoint YML file to define the endpoint. |
-| `code/online-endpoint/sample-request.json` | Sample request to test the online deployment. |
-| `code/profiling`         | Profiling script to profile the model. |
-| `.github/workflows`           | Folder for GitHub workflows. |
-| `docs`                        | Resources for this README.                 |
-| `CODE_OF_CONDUCT.md`          | Microsoft Open Source Code of Conduct.     |
-| `LICENSE`                     | The license for the sample.                |
-| `README.md`                   | This README file.                          |
-| `SECURITY.md`                 | Microsoft Security README.                 |
