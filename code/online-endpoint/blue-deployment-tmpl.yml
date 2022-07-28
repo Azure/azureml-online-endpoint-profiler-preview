@@ -9,6 +9,8 @@ code_configuration:
 environment: 
   conda_file: model-1/environment/conda.yml
   image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210727.v1
+environment_variables:
+  WORKER_COUNT: <% WORKER_COUNT %>
 instance_type: <% COMPUTER_SIZE %>
 instance_count: 1
 request_settings:

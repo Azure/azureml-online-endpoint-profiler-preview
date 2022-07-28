@@ -3,12 +3,15 @@ export SKU_CONNECTION_PAIR=${SKU_CONNECTION_PAIR}
 export ENDPOINT_NAME=${ENDPOINT_NAME}
 export DEPLOYMENT_NAME=${DEPLOYMENT_NAME}
 export DEPLOYMENT_COMPUTER_SIZE=`echo $SKU_CONNECTION_PAIR | awk -F: '{print $1}'`
+export DEPLOYMENT_WORKER_COUNT=`echo $SKU_CONNECTION_PAIR | awk -F: '{print $2}'`
 # the computer size for the online-deployment
 # </set_variables>
 
 # <create_endpoint>
 echo "Creating Endpoint $ENDPOINT_NAME of size $DEPLOYMENT_COMPUTER_SIZE..."
-sed -e "s/<% COMPUTER_SIZE %>/$DEPLOYMENT_COMPUTER_SIZE/g" online-endpoint/blue-deployment-tmpl.yml > online-endpoint/${DEPLOYMENT_NAME}.yml
+sed -e "s/<% COMPUTER_SIZE %>/$DEPLOYMENT_COMPUTER_SIZE/g" \
+    -e "s/<% WORKER_COUNT %>/$DEPLOYMENT_WORKER_COUNT/g" \
+    online-endpoint/blue-deployment-tmpl.yml > online-endpoint/${DEPLOYMENT_NAME}.yml
 az ml online-endpoint create --name $ENDPOINT_NAME -f online-endpoint/endpoint.yml
 az ml online-deployment create --name $DEPLOYMENT_NAME --endpoint $ENDPOINT_NAME -f online-endpoint/${DEPLOYMENT_NAME}.yml --all-traffic
 # </create_endpoint>
