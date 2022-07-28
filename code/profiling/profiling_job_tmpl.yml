@@ -3,9 +3,8 @@ command: >
   python -m online_endpoints_model_profiler --config_path ${{inputs.config}} --payload_path ${{inputs.payload}}
 experiment_name: profiling-job
 display_name: <% SKU_CONNECTION_PAIR %>
-  # image: mcr.microsoft.com/azureml/online-endpoints-model-profiler:latest
 environment:
-  image: docker.io/rachyong/profilers:20220728.8
+  image: mcr.microsoft.com/azureml/online-endpoints-model-profiler:latest
 compute: "azureml:<% COMPUTE_NAME %>"
 inputs:
   payload:
