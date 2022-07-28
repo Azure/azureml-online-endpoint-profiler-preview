@@ -1,0 +1,11 @@
+{
+    "version": "1.0",
+    "profiling_config": {
+        "endpoint_name": "<% ENDPOINT_NAME %>",
+        "deployment_name": "<% DEPLOYMENT_NAME %>",
+        "profiling_tool": "<% PROFILING_TOOL %>",
+        "wrk": {
+            "connections": <% CONNECTIONS %>
+        }
+    }
+}
