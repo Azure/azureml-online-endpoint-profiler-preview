@@ -4,7 +4,7 @@
 
 Inferencing machine learning models is a time and compute intensive process. It is vital to quantify the performance of model inferencing to ensure that you make the best use of compute resources and reduce cost to reach the desired performance SLA (e.g. latency, throughput).
 
-Online Endpoints Model Profiler provides fully managed experience that makes it easy to benchmark your model performance served through [Online Endpoints](https://docs.microsoft.com/en-us/azure/machine-learning/concept-endpoints).
+Online Endpoints Model Profiler (Preview) provides fully managed experience that makes it easy to benchmark your model performance served through [Online Endpoints](https://docs.microsoft.com/en-us/azure/machine-learning/concept-endpoints).
 
 * Use the benchmarking tool of your choice.
 
