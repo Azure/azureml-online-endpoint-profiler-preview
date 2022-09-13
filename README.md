@@ -194,7 +194,7 @@ Users should keep in mind that it's recommended to assign appropriate permission
 </td>
 </tr>
 <tr>
-<td> <code>PROFILING_TOOL</code> </td> <td> The name of the benchmarking tool. Currently support: <code>wrk</code>, <code>wrk2</code>, <code>labench</code>, <code>mlperf</code> </td> <td> <code>wrk</code> </td>
+<td> <code>PROFILING_TOOL</code> </td> <td> The name of the benchmarking tool. Currently support: <code>wrk</code>, <code>wrk2</code>, <code>labench</code> </td> <td> <code>wrk</code> </td>
 </tr>
 <tr>
 <td> <code>PAYLOAD</code> </td> 
