@@ -16,21 +16,13 @@ Online Endpoints Model Profiler (Preview) provides fully managed experience that
 
 ## A brief introduction on benchmarking tools
 
-The online endpoints model profiler currently supports 4 types of benchmarking tools: wrk, wrk2, labench and mlperf
+The online endpoints model profiler currently supports 3 types of benchmarking tools: wrk, wrk2, and labench.
 
 * `wrk`: wrk is a modern HTTP benchmarking tool capable of generating significant load when run on a single multi-core CPU. It combines a multithreaded design with scalable event notification systems such as epoll and kqueue. For detailed info please refer to this link: https://github.com/wg/wrk.
 
 * `wrk2`: wrk2 is wrk modifed to produce a constant throughput load, and accurate latency details to the high 9s (i.e. can produce accuracy 99.9999% if run long enough). In addition to wrk's arguments, wrk2 takes a throughput argument (in total requests per second) via either the --rate or -R parameters (default is 1000). For detailed info please refer to this link: https://github.com/giltene/wrk2.
 
 * `labench`: LaBench (for LAtency BENCHmark) is a tool that measures latency percentiles of HTTP GET or POST requests under very even and steady load. For detailed info please refer to this link: https://github.com/microsoft/LaBench.
-
-* `mlperf`: MLPerf Inference is a benchmark suite for measuring how fast systems can run models in a variety of deployment scenarios.
-  
-  mlperf contains 3 test modes:
-  
-  1. `server`: User needs to provide a TARGET_RPS_LIST, and the profiler will run multiple profiling jobs, each on a target rps in the list.
-  2. `searchThroughput`: The profiler will run a series of profiling jobs to find out the best rps performance while the latency is within the designated limitation. User is optional to provide one rps in this TARGET_RPS_LIST, and this rps will be used as the lower bound when searching for the best performance. If the value is not provided, the default lower bound is 1. User should also keep in mind that if the lower bound rps does not satisfy the latency limitation, the profiling job will stop immediately.
-  3. `singleStream`: The profiler will run one job, within which, requests will be sent in a single thread, and each request will be sent after the response for the previous request is received.
   
 ## Prerequisites
 
@@ -217,21 +209,14 @@ If <code>inputs.payload</code> is provided in the profiling job yaml file, this 
 
 ##### YAML benchmarking tool related environment_variables #####
 
-| Key | Description | Default Value | wrk | wrk2 | labench | mlperf |
-| --- | ----------- | ------------- | --- | ---- | ------- | ------ |
-| `DURATION` | Period of time for running the benchmarking tool. | `300s` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| `CONNECTIONS` | No. of connections for the benchmarking tool. The default value will be set to the value of `max_concurrent_requests_per_instance` | `1` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| `THREAD` | No. of threads allocated for the benchmarking tool. | `1` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| `TARGET_RPS` | Target requests per second for the benchmarking tool. | `50` | :x: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| `CLIENTS` | No. of clients for the benchmarking tool. The default value will be set to the value of `max_concurrent_requests_per_instance` | `1` | :x: | :x: | :heavy_check_mark: | :x: |
-| `TIMEOUT` | Timeout in seconds for each request. | `10s` | :x: | :x: | :heavy_check_mark: | :x: |
-| `TEST_MODE` | The test mode for mlperf. Allowed values: `server`, `searchThroughput`, `singleStream` | `singleStream` | :x: | :x: | :x: | :heavy_check_mark: |
-| `TARGET_LATENCY_IN_MS` | Used together with `TARGET_LATENCY_PERCENTILE` to form the customer designated latency limitation for mlperf. | `10000` | :x: | :x: | :x: | :heavy_check_mark: |
-| `TARGET_LATENCY_PERCENTILE` | Used together with `TARGET_LATENCY_IN_MS` to form the customer designated latency limitation for mlperf. | `90` | :x: | :x: | :x: | :heavy_check_mark: |
-| `TARGET_RPS_LIST` | The list of target rps values. | `[]` | :x: | :x: | :x: | :heavy_check_mark: |
-| `TARGET_SUCCESS_RATE` | Used together with the latency limitation, will ultimately decide if a profiling job result is VALID or not. | `99.99` | :x: | :x: | :x: | :heavy_check_mark: |
-| `MIN_DURATION_IN_MS` | The minimum duration that the profiling job has to run. | `60000` | :x: | :x: | :x: | :heavy_check_mark: |
-| `MIN_QUERY_COUNT` | The minimum number of queries that the profiling job has to send. | `singleStream`: 1024<br><br>`server`, `searchThroughput`:<br>- TARGET_LATENCY_PERCENTILE == 90: 24576<br>- TARGET_LATENCY_PERCENTILE == 95: 57344<br>- TARGET_LATENCY_PERCENTILE == 99: 270336<br>- else: 24576 | :x: | :x: | :x: | :heavy_check_mark: |
+| Key | Description | Default Value | wrk | wrk2 | labench |
+| --- | ----------- | ------------- | --- | ---- | ------- |
+| `DURATION` | Period of time for running the benchmarking tool. | `300s` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| `CONNECTIONS` | No. of connections for the benchmarking tool. The default value will be set to the value of `max_concurrent_requests_per_instance` | `1` | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| `THREAD` | No. of threads allocated for the benchmarking tool. | `1` | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| `TARGET_RPS` | Target requests per second for the benchmarking tool. | `50` | :x: | :heavy_check_mark: | :heavy_check_mark: |
+| `CLIENTS` | No. of clients for the benchmarking tool. The default value will be set to the value of `max_concurrent_requests_per_instance` | `1` | :x: | :x: | :heavy_check_mark: |
+| `TIMEOUT` | Timeout in seconds for each request. | `10s` | :x: | :x: | :heavy_check_mark: |
 
 #### Create a profiling job with azure cli and ml extension
 
