@@ -96,7 +96,7 @@ Below is a template yaml file that defines a profiling job.
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: >
-  python -m online_endpoints_model_profiler ${{inputs.payload}}
+  python -m online_endpoints_model_profiler --payload_path ${{inputs.payload}}
 experiment_name: profiling-job
 display_name: <% SKU_CONNECTION_PAIR %>
 environment:
