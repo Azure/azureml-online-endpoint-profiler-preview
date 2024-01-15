@@ -31,7 +31,7 @@ jobs:
         export PROFILER_COMPUTE_NAME=profilingTest
         echo PROFILER_COMPUTE_NAME=$PROFILER_COMPUTE_NAME >> $GITHUB_ENV
         echo PROFILER_COMPUTE_SIZE=Standard_F4s_v2 >> $GITHUB_ENV
-        echo "::set-output name=PROFILER_COMPUTE_NAME::$PROFILER_COMPUTE_NAME"
+        echo "PROFILER_COMPUTE_NAME=$PROFILER_COMPUTE_NAME" >> $GITHUB_OUTPUT
     - name: Check out repo
       uses: actions/checkout@v2
     - name: Create profiling compute
