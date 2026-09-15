@@ -13,7 +13,7 @@ jobs:
       PROFILER_COMPUTE_NAME: ${{ steps.set_profiler_compute_info.outputs.PROFILER_COMPUTE_NAME }}
     steps:
     - name: Azure login
-      uses: azure/login@v1
+      uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1.6.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Install dependencies
@@ -33,7 +33,7 @@ jobs:
         echo PROFILER_COMPUTE_SIZE=Standard_F4s_v2 >> $GITHUB_ENV
         echo "::set-output name=PROFILER_COMPUTE_NAME::$PROFILER_COMPUTE_NAME"
     - name: Check out repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Create profiling compute
       run: bash -x profiling/create-profiling-compute.sh
       env:
@@ -50,9 +50,9 @@ jobs:
         sku_connection_pair: ${{ fromJson(github.event.inputs.SKU_LIST) }}
     steps:
     - name: Check out repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
     - name: Azure login
-      uses: azure/login@v1
+      uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1.6.1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Install dependencies
